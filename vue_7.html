@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	
+		<title>J1 Practice</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.formfield{margin-bottom:10px;}
+		</style>
+	</head>
+	<body>
+	<p>Winning Score. <a href="https://cemc.uwaterloo.ca/contests/computing/2019/stage%201/juniorEF.pdf">from the J1 problem hosted by the CCC.</a></p>
+	<div id="app">
+	<div id="team1">
+	<h1>Team 1</h1>
+		<div class="formfield">
+			<label>No of 1 pointer: <label> <input v-model="team1_1pointer">
+		</div>
+		<div class="formfield">
+			<label>No of 2 pointer: <label> <input v-model="team1_2pointer">
+		</div>
+		<div class="formfield">
+			<label>No of 3 pointer: <label> <input v-model="team1_3pointer">
+		</div>
+		</div>
+		<div id="team2">
+		<h1>Team 2</h1>
+		<div class="formfield">
+			<label>No of 1 pointer: <label> <input v-model="team2_1pointer">
+		</div>
+		<div class="formfield">
+			<label>No of 2 pointer: <label> <input v-model="team2_2pointer">
+		</div>
+		<div class="formfield">
+			<label>No of 3 pointer: <label> <input v-model="team2_3pointer">
+		</div>
+		
+		</div>
+		<div id="result">
+			<span v-if="winteam1">{{team1}} Win!</span>
+			<span v-else>{{team2}} Win!</span>
+		</div>
+	</div>
+	
+	<script>
+	var app = new Vue({
+		el: '#app',
+		data:{
+			team1:"Team 1",
+			team2:"Team 2",
+			team1_1pointer:0,
+			team1_2pointer:0,
+			team1_3pointer:0,
+			team2_1pointer:0,
+			team2_2pointer:0,
+			team2_3pointer:0,
+			pointer1:1,
+			pointer2:2,
+			pointer3:3
+		},
+		computed:{
+			winteam1:function(){
+				return ((this.pointer1 * this.team1_1pointer) + 
+				(this.pointer2 * this.team1_2pointer) + 
+				(this.pointer3 * this.team1_3pointer)
+				> 
+				(this.pointer1 * this.team2_1pointer) + 
+				(this.pointer2 * this.team2_2pointer) + 
+				(this.pointer3 * this.team2_3pointer));	
+			}
+		}
+	});
+	
+	</script>
+	<!--
+		v-model will allow you to quickly bind form elements to the data property.
+		Make sure to set a default value!
+		The Computed property can be used like data, except for values that are calculated from data properties.
+		In this example 'treat_total' is computed from data properties, and 'is_happy' is computed from 'treat_total'.
+		
+		ASYNCHRONOUS LEARNING EXERCISE : J1
+		- Find any J1 problem
+		- Imagine an interface that allows the user to enter data on the webpage
+		- Build using v-model and computed properties!
+	
+	-->
+	</body>
+</html>
